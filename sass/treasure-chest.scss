@@ -1,0 +1,237 @@
+@import "mixins";
+@import "vars";
+
+html, body { 
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.centered-content { 
+  width: 400px;
+  height: 500px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  @include perspective(1000px);
+  @include transform( translateX(-25%));
+}
+
+.chest-container { 
+  position: relative;
+  top: 30%;
+  
+  @include transform-style( preserve-3d );
+  @include transform-origin($box-width/2 0px);
+  @include transition(all 1.5s linear);
+  @include transform( rotateY(180deg) );
+}
+
+.rectangular-prism { 
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  @include transition(all 1s linear);
+  @include transform( translate3d(0px, 0px, -131px));
+
+  &:hover { 
+    // @include transform(rotateX(180deg));
+  }
+}
+
+.prism--face { 
+  position: absolute;
+  border: 10px solid $silver-edge;
+  background-color: rgb(166, 131, 6);
+  opacity: 1;
+}
+
+.prism--face__lighter {
+  // opacity: 0.4;
+}
+
+.front-side { 
+  width: $box-width - 15;
+  height: $box-height;
+  -webkit-transform: translateZ($box-depth/2);
+}
+
+.left-side { 
+  width: $box-depth;
+  height: $box-height;
+  -webkit-transform: translateX(-135px) rotateY(90deg);
+}
+
+.back-side { 
+  width: $box-width - 15;
+  height: $box-height;
+  background-color: transparent;
+  -webkit-transform: translateZ(-($box-depth/2)) rotateY(180deg);
+}
+
+.back-side:before {
+  background-color: rgb(166, 131, 6);
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+}
+
+.bottom-side { 
+  width: $box-width - 15;
+  height: $box-depth;
+  -webkit-transform: translateY(55px) rotateX(90deg);
+}
+
+.right-side { 
+  width: $box-depth;
+  height: $box-height;
+  -webkit-transform: translateX(142px) rotateY(90deg);
+}
+
+.top-side { 
+  width: $box-width - 15;
+  height: $box-depth;
+  -webkit-transform: translateY(-134px) rotateX(90deg);
+}
+
+.key-box {
+  position: absolute;
+  border: 1px solid #000;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  background-color: $silver-edge;
+  opacity: 1.0;
+  width: $key-box-width;
+  height: $key-box-width;
+  left: 50%;
+  @include transform(translateX(-50%));
+}
+
+.key-hole {
+  position: relative;
+  background: #000;
+  height: 30%;
+  width: 30%;
+  border-radius: 50%;
+  left: 50%;
+  top: 20%;
+  @include transform(translateX(-50%));
+}
+
+.key-hole:before,
+.key-hole:after {
+  content: '';
+  position: absolute;
+  border-bottom: 22px solid #000;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+
+
+}
+
+/* *---------------------------------------------------------*/
+
+.lid {
+  position: relative;
+  height: 30px;
+  width: 200px;
+
+  @include transition(all 1.5s linear);
+  @include transform-style( preserve-3d );
+
+
+  &:hover {
+    @include transform( rotateX(-50deg) );
+  }
+}
+
+.lid-side {
+  position: absolute;
+  border-radius: $box-depth $box-depth 0px 0px;
+  background-color: $box-color;
+  width: $box-depth;
+  height: 100px;
+  top: -70px;
+  @include transform( rotateY(90deg) translateX(130px));
+
+  &.lid-side__left {
+    left: 153px;
+  }
+
+  &.lid-side__right {
+    left: -125px;
+  }
+
+}
+
+.strip {
+  border: 2px solid black;
+  background-color: $box-color;
+  position: absolute;
+
+  width: $box-width;
+  height: $strip-height;
+}
+
+.a {
+  @include transform( translateZ(0px) rotateX(15deg) );
+}
+    
+.b {
+  @include transform( translateZ(-12px) translateY(-29px) rotateX(30deg) );
+}
+  
+.c {
+  @include transform( translateZ(-32px) translateY(-54px) rotateX(45deg) );
+}
+  
+.d {
+  @include transform( translateZ(-56px) translateY(-73px) rotateX(60deg) );
+}  
+  
+.e {
+  @include transform( translateZ(-84px) translateY(-85px) rotateX(75deg) );
+}  
+  
+.f {
+  @include transform( translateZ(-114px) translateY(-88px) rotateX(90deg) );
+}
+  
+.g {
+  @include transform( translateZ(-145px) translateY(-88px) rotateX(90deg) );
+}
+  
+.h {
+  @include transform( translateZ(-175px) translateY(-84px) rotateX(105deg) );
+} 
+  
+.i {
+  @include transform( translateZ(-204px) translateY(-72px) rotateX(120deg) );
+} 
+  
+.j {
+  @include transform( translateZ(-228px) translateY(-53px) rotateX(135deg) );
+}
+  
+.k {
+  @include transform( translateZ(-247px) translateY(-29px) rotateX(150deg) );
+}
+
+.l {
+  @include transform( translateZ(-259px) translateY(-1px) rotateX(165deg) );
+
+  .lock-top {
+    border: 1px solid #000;
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    @include transform( translateX(-50%) );
+    width: $key-box-width; //account for border width on lock
+    height: 25px; 
+    background-color: $silver-edge;
+
+  }
+}
+
+
+    
